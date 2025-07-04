@@ -8,13 +8,13 @@ const ProductPagePlaceHolder = () => {
                 <div className="col-md-6">
                     <img
                      className='card-img-top mb-5 mb-md-0'
-                     src="https://dummyimage.com/600*700/dee2e6/6c757d.jpg"
+                     src="https://dummyimage.com/600x700/e0cee0/a8aac4"
                     alt="..." />
                 </div>
                 <div className="col-md-6">
                     <span className="placeholder col-4"></span>
                     <span className="placeholder col-12"></span>
-                    <span className="placeholder col-"></span>
+                    <span className="placeholder col-4"></span>
 
                     <p className="lead">
                       <span className="placeholder col-12"></span>

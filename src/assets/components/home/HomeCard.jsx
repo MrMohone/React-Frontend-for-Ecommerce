@@ -2,10 +2,11 @@ import styles from './HomeCard.module.css'
 import { Link } from 'react-router-dom'
 import { BASE_URL } from '../../../api'
 
+
 const HomeCard = ({product}) => {
   return (
     <div className={`col-md-3 ${StyleSheet.col}`}>
-        <Link to={`products/${product.slug}`} className={StyleSheet.link}>
+        <Link to={`/products/${product.slug}`} className={StyleSheet.link}>
         <div className={styles.card}>
             <div className={styles.cardImgWrapper}>
                 <img src={`${BASE_URL}${product.image}`}
