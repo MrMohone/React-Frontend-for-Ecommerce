@@ -9,8 +9,6 @@ const CardContainer = ({products}) => {
               {products.map(product => (
                 <HomeCard key={product.id} product={product}/> 
               ))}
-               
-               
             </div>
         </div>
     </section>
