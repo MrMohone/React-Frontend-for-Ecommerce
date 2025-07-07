@@ -5,12 +5,28 @@ import { useEffect, useState } from "react"
 import api from "../../../api"
 import { BASE_URL } from "../../../api"
 
+
 const ProductPage = () => {
 
     const {slug} = useParams()
     const [product, setProduct] = useState({})
     const [similarProducts, setSimilarProducts] = useState([])
     const [loading, setLoading] = useState(false)
+    //For add to cart
+    const cart_code = localStorage.getItem('cart_code')
+
+    //pass value to backend variable👇
+    const newItem = {cart_code: cart_code, product_id:product.id}
+
+    function add_item(){
+        api.post('add_item/', newItem)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    }
 
     useEffect(function(){
         setLoading(true)
@@ -54,7 +70,8 @@ const ProductPage = () => {
                         </p>
                         <div className="d-flex">
                             <button className='btn btn-outline-dark flex-shirink-0'
-                            type='button'>
+                            type='button'
+                            onClick={add_item}>
                                 <i className="bi-cart-fill me-1"></i>
                                 Add to Cart
                             </button>
