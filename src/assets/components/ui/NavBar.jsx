@@ -5,13 +5,13 @@ import NavBarLink from './NavBarLink'
 
 const NavBar = ({numCartItems}) => {
   return (
-   <nav className={`navbar navbar-expand-lg navbar-light bg-white shadew-sm py-3 ${styles.stickyNavbar}`}>
+   <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 ${styles.stickyNavbar}`}>
     <div className='container'>
         <Link className='navbar-brand fw-bold text-uppercase' to='/'> SHOPPIT </Link>
         <button
             className='navbar-toggler'
             type='button'
-            data-bs-toggle='collaps'
+            data-bs-toggle='collapse'
             data-bs-target='#navbarContent'
             aria-controls='navbarContent'
             aria-label='Toggle navigaion'>

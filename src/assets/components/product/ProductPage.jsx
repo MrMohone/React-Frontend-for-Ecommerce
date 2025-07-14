@@ -4,6 +4,7 @@ import RelatedProducts from "./RelatedProducts"
 import { useEffect, useState } from "react"
 import api from "../../../api"
 import { BASE_URL } from "../../../api"
+import { toast } from "react-toastify"
 
 
 const ProductPage = ({setNumberCartItems}) => {
@@ -15,8 +16,7 @@ const ProductPage = ({setNumberCartItems}) => {
     //For add to cart
     const [inCart, setInCart] = useState(false)
     const cart_code = localStorage.getItem('cart_code')
-    //pass value to backend variable👇
-    const newItem = {cart_code: cart_code, product_id:product.id}
+ 
 
     //Check if product is already in cart
     useEffect(function(){
@@ -33,12 +33,16 @@ const ProductPage = ({setNumberCartItems}) => {
         
     },[cart_code, product.id])
 
+       //pass value to backend variable👇
+    const newItem = {cart_code: cart_code, product_id:product.id}
+
     function add_item(){
         api.post('add_item/', newItem)
-        setNumberCartItems(curr => curr + 1)//update number of items in cart
         .then(res => {
             console.log(res.data)
             setInCart(true)
+            toast.success('Product added to cart successfully')
+            setNumberCartItems(curr => curr + 1)//update number of items in cart
         })
         .catch(err => {
             console.log(err.message)
@@ -86,7 +90,7 @@ const ProductPage = ({setNumberCartItems}) => {
                             laboriosam laborum. Nulla, accusantium tempore?
                         </p>
                         <div className="d-flex">
-                            <button className='btn btn-outline-dark flex-shirink-0'
+                            <button className='btn btn-outline-dark flex-shrink-0'
                             type='button'
                             onClick={add_item}
                             disabled={inCart}//when inCart is True
