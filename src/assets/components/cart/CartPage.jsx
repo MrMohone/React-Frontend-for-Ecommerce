@@ -22,6 +22,13 @@ const CartPage = () => {
         })
     }, [])
 
+    if(cartitems.length < 1){
+        return(<div className="alert alert-primary my-5" role="alert">
+          You haven't added any items to your cart yet.
+        </div>
+        )
+    } 
+
 
   return (
     <div className="container my-3 py-3"
