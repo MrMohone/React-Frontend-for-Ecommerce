@@ -6,6 +6,7 @@ import ProductPage from "./assets/components/product/ProductPage"
 import CartPage from "./assets/components/cart/CartPage"
 import { useState,useEffect } from "react"
 import api from "./api"
+import CheckoutPage from "./assets/components/checkout/CheckoutPage"
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
       <Route index element={<HomePage />}/>
       <Route path="products/:slug" element={<ProductPage setNumberCartItems={setNumberCartItems}/>}/>
       <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>}/>
+      <Route path="checkout" element={<CheckoutPage/>}/>
       <Route path="*" element={<NotFounde/>}/> 
     </Route>
    </Routes>
