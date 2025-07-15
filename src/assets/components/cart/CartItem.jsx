@@ -3,12 +3,35 @@ import { BASE_URL } from '../../../api'
 import api from '../../../api'
 import { toast } from 'react-toastify'
 
-const CartItem = ({item,setCartTotal,cartitems, setNumberCartItems}) => {
+const CartItem = ({item,setCartTotal,cartitems, setNumberCartItems,setCartItems}) => {
 
     const [quantity, setQuantity] = useState(item.quantity)
     const [loading, setLoading] = useState(false)
 
-    const itemData = {quantity: quantity, item_id:item.id}// pass field to backend
+    const itemData = {quantity: quantity, item_id:item.id}
+    const itemID = {item_id: item.id}
+
+
+    function deleteCartItem() {
+        const confrimDelete = window.confirm("Are you sure you want to delete this item from your cart?")
+        if(confrimDelete){
+            api.post("delete_cartitem", itemID)
+            .then(res => {
+                console.log(res.data)
+                toast.success('Cart item deleted successfully')
+                setCartItems(cartitems.filter(cartitem => cartitem.id != item.id))
+
+                setCartTotal(cartitems.filter((cartitem) => cartitem.id != item.id)
+                .reduce((acc, curr) => acc + curr.total, 0))//accumulate total price
+
+                setNumberCartItems(cartitems.filter((cartitem) => cartitem.id != item.id)
+                .reduce((acc, curr) => acc + curr.quantity, 0))
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+        }
+    }
 
     function updateCartitem() {
         setLoading(true)
@@ -17,6 +40,7 @@ const CartItem = ({item,setCartTotal,cartitems, setNumberCartItems}) => {
             console.log(res.data)
             setLoading(false)
             toast.success('Cart item updated successfully')
+
             setCartTotal(cartitems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
             .reduce((acc, curr) => acc + curr.total, 0))//accumulate total price
 
@@ -59,7 +83,7 @@ const CartItem = ({item,setCartTotal,cartitems, setNumberCartItems}) => {
                  disabled={loading}>
                     {loading ? 'Updating...' : 'Update'}
                     </button>
-                <button className="btn btn-danger btn-sm">Remove</button>
+                <button className="btn btn-danger btn-sm" onClick={deleteCartItem}>Remove</button>
              </div>
         </div>
         {/* Add to cart items here */}
@@ -68,3 +92,7 @@ const CartItem = ({item,setCartTotal,cartitems, setNumberCartItems}) => {
 }
 
 export default CartItem
+
+
+
+
