@@ -1,7 +1,7 @@
 import OrderItem from './OrderItem'
 import styles from './OrderSummery.module.css'
 
-const OrderSummery = () => {
+const OrderSummery = ({cartitems}) => {
   return (
     <div className="col-md-8">
         <div className={`card mb-4 ${styles.card}`}>
@@ -10,7 +10,10 @@ const OrderSummery = () => {
             </div>
             <div className="card-body">
                 <div className="px-3" style={{height:'300px', overflow:'auto'}}>
-                    <OrderItem />
+
+                    {cartitems.map(cartitem => <OrderItem key={cartitem.id} cartitem={cartitem} />)}
+                    
+
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">
