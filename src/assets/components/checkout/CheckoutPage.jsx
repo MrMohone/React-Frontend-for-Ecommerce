@@ -8,7 +8,7 @@ const CheckoutPage = () => {
   return (
     <div className="container my-3">
         <div className="row">
-            <OrderSummery cartitems={cartitems}/>
+            <OrderSummery cartitems={cartitems} cartTotal={cartTotal} tax={tax} />
             <PaymentSection />
         </div>
     </div>

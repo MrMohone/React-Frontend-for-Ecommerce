@@ -1,7 +1,9 @@
 import OrderItem from './OrderItem'
 import styles from './OrderSummery.module.css'
 
-const OrderSummery = ({cartitems}) => {
+const OrderSummery = ({cartitems, cartTotal, tax}) => {
+const total = (cartTotal + tax).toFixed(2)
+
   return (
     <div className="col-md-8">
         <div className={`card mb-4 ${styles.card}`}>
@@ -18,7 +20,7 @@ const OrderSummery = ({cartitems}) => {
                 <hr />
                 <div className="d-flex justify-content-between">
                     <h6>Total</h6>
-                    <h6>$100.00</h6>
+                    <h6>{`$${total}`}</h6>
                 </div>
             </div>
         </div>
