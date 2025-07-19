@@ -7,6 +7,8 @@ import CartPage from "./assets/components/cart/CartPage"
 import { useState,useEffect } from "react"
 import api from "./api"
 import CheckoutPage from "./assets/components/checkout/CheckoutPage"
+import ProtectedRoute from "./assets/components/ui/ProtectedRoute"
+import LoginPage from "./assets/components/user/LoginPage"
 
 
 
@@ -35,7 +37,11 @@ const App = () => {
       <Route index element={<HomePage />}/>
       <Route path="products/:slug" element={<ProductPage setNumberCartItems={setNumberCartItems}/>}/>
       <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems}/>}/>
-      <Route path="checkout" element={<CheckoutPage/>}/>
+      <Route path="checkout" element={
+        <ProtectedRoute>
+          <CheckoutPage/>
+        </ProtectedRoute>}/>
+      <Route path="login" element={<LoginPage/>}/>
       <Route path="*" element={<NotFounde/>}/> 
     </Route>
    </Routes>
